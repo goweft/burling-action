@@ -1,6 +1,9 @@
 # Local SARIF output from test runs
 *.sarif
 
+# CI-generated throwaway token
+token.jwt
+
 # Built binaries
 /entrypoint
 /out/
