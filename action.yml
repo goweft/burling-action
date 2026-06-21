@@ -1,0 +1,42 @@
+name: 'Burling AIP Conformance'
+description: 'Validate AIP (Agent Identity Protocol) identity documents and Invocation-Bound Capability Tokens, emitting SARIF for GitHub code scanning.'
+author: 'goweft'
+
+branding:
+  icon: 'shield'
+  color: 'purple'
+
+inputs:
+  token:
+    description: 'Path to the artifact to validate (a compact IBCT, or an identity document for validate-identity), relative to the repository root.'
+    required: true
+  command:
+    description: 'burling subcommand: lint (all checks, recommended), validate, validate-identity, or audit-chain.'
+    required: false
+    default: 'lint'
+  strict:
+    description: 'Promote WARNING findings to failures (passes --strict to burling). This affects the SARIF result levels burling reports.'
+    required: false
+    default: 'false'
+  fail-on-error:
+    description: 'Fail this step when burling reports an ERROR finding. Default false so a later upload-sarif step still runs; set true to gate the build here instead of in code scanning.'
+    required: false
+    default: 'false'
+  output:
+    description: 'Path to write the SARIF document, relative to the repository root.'
+    required: false
+    default: 'burling.sarif'
+
+outputs:
+  sarif-file:
+    description: 'Path to the generated SARIF file. Feed this to github/codeql-action/upload-sarif.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    BURLING_COMMAND: ${{ inputs.command }}
+    BURLING_TOKEN: ${{ inputs.token }}
+    BURLING_STRICT: ${{ inputs.strict }}
+    BURLING_FAIL_ON_ERROR: ${{ inputs.fail-on-error }}
+    BURLING_OUTPUT: ${{ inputs.output }}

@@ -1,0 +1,9 @@
+# Local SARIF output from test runs
+*.sarif
+
+# Built binaries
+/entrypoint
+/out/
+
+# OS cruft
+.DS_Store
