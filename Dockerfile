@@ -4,7 +4,7 @@
 # and the action entrypoint wrapper (from this repo). Both are static,
 # CGO-disabled binaries.
 FROM golang:1.22-alpine AS build
-ARG BURLING_VERSION=v0.2.0
+ARG BURLING_VERSION=v0.2.1
 ENV CGO_ENABLED=0 GOFLAGS=-trimpath
 
 # burling: the validator binary, fetched from the public Go module. The
