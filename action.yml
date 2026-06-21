@@ -1,5 +1,5 @@
 name: 'Burling AIP Conformance'
-description: 'Validate AIP (Agent Identity Protocol) identity documents and Invocation-Bound Capability Tokens, emitting SARIF for GitHub code scanning.'
+description: 'Validate AIP (Agent Identity Protocol) identity documents and capability tokens, emitting SARIF for code scanning.'
 author: 'goweft'
 
 branding:
